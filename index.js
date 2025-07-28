@@ -3,6 +3,7 @@ const bodyparser = require("body-parser");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const connectMongoDb = require("./Config/MongoDb");
+const router = require("./Routes/user");
 dotenv.config();
 const server = express();
 connectMongoDb();
@@ -11,6 +12,9 @@ server.use(cors());
 server.use(bodyparser.urlencoded({ extended: true }));
 
 
+
+
+server.use("/api", router);
 
 const PORT = process.env.PORT;
 server.listen(PORT, () => {
